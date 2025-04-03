@@ -15,9 +15,9 @@ def extract_using_request(url):
     soup = BeautifulSoup(response.text, "html.parser")
     rows = soup.find_all("div", {"data-testid": "tracks-table-row"})
 
-    # Extract text from URL for filename naming
-    name = url.split("/")[-2] if len(url.split("/")) > 3 else "unknown"
-    output_filename = f"output/{name}_export.txt"
+    # Extract genre from URL for filename
+    genre = url.split("/")[-3] if len(url.split("/")) > 3 else "unknown"
+    output_filename = f"output/{genre}_export.txt"
 
     os.makedirs("output", exist_ok=True)
 
@@ -42,4 +42,4 @@ def extract_using_request(url):
             line = f"{index} | {main_artists} | {track_title} | {remix_text}\n"
             file.write(line)
 
-    print(f"✅ Exported data to {output_filename}")
+    print(f"Data written to {output_filename}")
