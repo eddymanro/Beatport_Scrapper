@@ -34,8 +34,8 @@ def get_cart_private_data(url, auth_token, cart_name):
                 artists = ', '.join(artist['name'] for artist in item['item']['artists'])
                 title = item['item']['name']  # Get the track title
                 mix_name = item['item']['mix_name']  # Get the mix name
-                file.write(f"{index} | {artists} | {title} | {mix_name}\n")
-
+                track_length = item['item']['length']  # Get the track length
+                file.write(f"{index} | {artists} | {title} | {mix_name} | {track_length}\n")
         print(f"Data exported to {file_to_write_to_path}")  # Confirm success
     else:
         print(f"Error: {response.status_code}, {response.text}")
